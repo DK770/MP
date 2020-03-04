@@ -1,4 +1,17 @@
-
+%macro print 2
+	mov rax,1
+	mov rdi,1
+	mov rsi,%1
+	mov rdx,%2
+	syscall
+%endmacro
+%macro read 2
+	mov rax,0
+	mov rdi,1
+	mov rsi,%1
+	mov rdx,%2
+	syscall
+%endmacro
 
 section .data
 	msg    : db "File does not exist ",0AH
@@ -22,22 +35,7 @@ section .bss
 
 
 section .txt
-	global _start
-	%macro print 2
-		mov rax,1
-		mov rdi,1
-		mov rsi,%1
-		mov rdx,%2
-		syscall
-	%endmacro
-	%macro read 2
-		mov rax,0
-		mov rdi,1
-		mov rsi,%1
-		mov rdx,%2
-		syscall
-	%endmacro
-
+	global _start	
 	_start:
 
 	pop rbx          ; REMOVE THE NUMMBER OF ARGUMENS FROM THE STACK
